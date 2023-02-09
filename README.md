@@ -1,7 +1,7 @@
 # Consume RESTful Web Service
 
 <p align="center">
-  <img src="ihttps://github.com/getdaniel/webservice-with-jQuery/blob/main/assets/icon.xpm" alt="Spring Tool Suit 4 IDE">
+  <img src="ihttps://github.com/getdaniel/webservice-with-jQuery/blob/main/assets/icon.png" alt="Spring Tool Suit 4 IDE">
 </p>
 
 ## Description 📽️:

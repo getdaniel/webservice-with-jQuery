@@ -1,17 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
-  <body>
-    <h2 align='center'> Consume a RESTful Web Service with jQuery </h2>
-    <button id="getData"> Get Data </button>
-    <br />
-    <h4> Star Wars movies </h4>
-    <hr />
-    <ul id="list_movies"></ul>
+<head>
+  <title>User Management</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function showUsers() {
+      $.get("/api/users", function (users) {
+        $("#userList").empty();
+        users.forEach(function (user) {
+          $("#userList").append(
+            "<tr><td>" + user.name + "</td><td>" + user.email + "</td></tr>"
+          );
+        });
+      });
+    }
 
-    <script type="text/javascript" src="./script.js"></script>
-    <hr />
-  </body>
+    function createUser() {
+      $.post("/api/users", { name: $("#name").val(), email: $("#email").val() }, function (user) {
+        showUsers();
+      });
+    }
+
+    function updateUser() {
+      $.ajax({
+        url: "/api/users/" + $("#index").val(),
+        type: "PUT",
+        data: { name: $("#name").val(), email: $("#email").val() },
+        success: function (user) {
+          showUsers();
+        }
+      });
+    }
+
+    function deleteUser() {
+      $.ajax({
+        url: "/api/users/" + $("#index").val(),
+        type: "DELETE",
+        success: function () {
+          showUsers();
+        }
+      });
+    }
+
+    $(document).ready(function () {
+      showUsers();
+    });
+  </script>
+</head>
+<body>
+  <table id="userList"></table>
+  <br>
+  <input type="text" id="name" placeholder="Name">
+  <input type="text" id="email" placeholder="Email">
+  <input type="text" id="index" placeholder="Index">
+  <br><br>
+  <button onclick="createUser()">Create</button>
+  <button onclick="updateUser()">Update</button>
+  <button onclick="deleteUser()">Delete</button>
+</body>
 </html>

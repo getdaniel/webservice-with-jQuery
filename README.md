@@ -1,9 +1,9 @@
 # Consume RESTful Web Service
 
-## Description:building::
+## Description :application::
 Consume RESTful web service using jQuery based on Spring which is one of framework of java that is based eclipse. This project is a purpose for class project as of blueprint for consumming RESTful web service using jQuery based on ```Spring Framework```
 
-## Usage:boom::
+## Usage :boom::
 
 ### Step :one::
 Open your favorite Java IDE, in our case we use Spring Tool Suit 4. If you want to use other IDE, you may need additional configuration.

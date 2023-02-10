@@ -1,61 +1,132 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User Management</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    function showUsers() {
-      $.get("/api/users", function (users) {
-        $("#userList").empty();
-        users.forEach(function (user) {
-          $("#userList").append(
-            "<tr><td>" + user.name + "</td><td>" + user.email + "</td></tr>"
-          );
-        });
-      });
-    }
-
-    function createUser() {
-      $.post("/api/users", { name: $("#name").val(), email: $("#email").val() }, function (user) {
-        showUsers();
-      });
-    }
-
-    function updateUser() {
-      $.ajax({
-        url: "/api/users/" + $("#index").val(),
-        type: "PUT",
-        data: { name: $("#name").val(), email: $("#email").val() },
-        success: function (user) {
-          showUsers();
-        }
-      });
-    }
-
-    function deleteUser() {
-      $.ajax({
-        url: "/api/users/" + $("#index").val(),
-        type: "DELETE",
-        success: function () {
-          showUsers();
-        }
-      });
-    }
-
-    $(document).ready(function () {
-      showUsers();
-    });
-  </script>
+  <style>
+	  body {
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  height: 100vh;
+		  flex-flow: column;
+	  }
+  </style>
 </head>
 <body>
-  <table id="userList"></table>
+  <table id="user-table" border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
   <br>
-  <input type="text" id="name" placeholder="Name">
-  <input type="text" id="email" placeholder="Email">
-  <input type="text" id="index" placeholder="Index">
-  <br><br>
-  <button onclick="createUser()">Create</button>
-  <button onclick="updateUser()">Update</button>
-  <button onclick="deleteUser()">Delete</button>
+  <form id="user-form">
+	  <input type="text" id="name-input" placeholder="Name">
+	  <input type="text" id="email-input" placeholder="Email">
+	  <button type="button" id="add-button">Add</button>
+	  <button type="button" id="update-button" style="display:none">Update</button>
+	  <button type="button" id="cancel-button" style="display:none">Cancel</button>
+  </form>
+  <script>
+	  $(document).ready(function () {
+		  $.ajax({
+		    type: "GET",
+		    url: "/api/users",
+		    success: function (users) {
+		      $.each(users, function (index, user) {
+		        $("#user-table tbody").append(
+		          "<tr><td>" + user.name + "</td><td>" + user.email +
+		          "</td><td><button type='button' class='update-button' data-id='" + user.id + "'>Update</button></td>" +
+		          "<td><button type='button' class='delete-button' data-id='" + user.id + "'>Delete</button></td></tr>"
+		        );
+		      });
+		    }
+		  });
+		
+		  // Create user
+		  $("#add-button").click(function () {
+			  var name = $("#name-input").val();
+			  var email = $("#email-input").val();
+			  var user = { name: name, email: email };
+			  
+			  $.ajax({
+			    type: "POST",
+			    url: "/api/users",
+			    contentType: "application/json",
+			    data: JSON.stringify(user),
+			    success: function (createdUser) {
+			      $("#user-table tbody").append(
+			        "<tr><td>" + createdUser.name + "</td><td>" + createdUser.email +
+			        "</td><td><button type='button' class='update-button' data-id='" + createdUser.id + "'>Update</button></td>" +
+			        "<td><button type='button' class='delete-button' data-id='" + createdUser.id + "'>Delete</button></td></tr>"
+			      );
+			      $("#name-input").val("");
+			      $("#email-input").val("");
+			    }
+			  });
+			});
+		  
+		  // Update user
+		  $("#user-table tbody").on("click", ".update-button", function () {
+		    var currentRow = $(this).closest("tr");
+		    var name = currentRow.find("td:eq(0)").text();
+		    var email = currentRow.find("td:eq(1)").text();
+		
+		    $("#name-input").val(name);
+		    $("#email-input").val(email);
+		    $("#add-button").hide();
+		    $("#update-button").show();
+		    $("#cancel-button").show();
+		  });
+		
+		  $("#update-button").click(function () {
+		    var name = $("#name-input").val();
+		    var email = $("#email-input").val();
+		    var id = $("#update-button").attr("data-id");
+		
+		    $.ajax({
+		      type: "PUT",
+		      url: "/api/users/" + id,
+		      data: JSON.stringify({ name: name, email: email }),
+		      contentType: "application/json",
+		      success: function (user) {
+		        $("#user-table tbody tr[data-id='" + id + "'] td:eq(0)").text(user.name);
+		        $("#user-table tbody tr[data-id='" + id + "'] td:eq(1)").text(user.email);
+		        $("#name-input").val("");
+		        $("#email-input").val("");
+		        $("#update-button").hide();
+		        $("#cancel-button").hide();
+		        $("#add-button").show();
+		      }
+		    });
+		  });
+		  
+		  // Delete Users
+		  $("#cancel-button").click(function () {
+		    $("#name-input").val("");
+		    $("#email-input").val("");
+		    $("#update-button").hide();
+		    $("#cancel-button").hide();
+		    $("#add-button").show();
+		  });
+		
+		  $("#user-table tbody").on("click", ".delete-button", function () {
+		    var currentRow = $(this).closest("tr");
+		    var id = currentRow.attr("data-id");
+		
+		    $.ajax({
+		      type: "DELETE",
+		      url: "/api/users/" + id,
+		      success: function () {
+		        currentRow.remove();
+		      }
+		    });
+		  });
+		});
+  </script>
 </body>
 </html>

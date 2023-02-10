@@ -2,15 +2,6 @@ package com.ws.webservicewithjQuery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//
-//@SpringBootApplication
-//public class WebserviceWithJQueryApplication {
-//
-//	public static void main(String[] args) {
-//		SpringApplication.run(WebserviceWithJQueryApplication.class, args);
-//	}
-//
-//}
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,11 +11,15 @@ import java.util.List;
 @RestController
 public class WebserviceWithJQueryApplication {
   private static List<User> users = new ArrayList<>();
+  public static int usersCount = 6;
 
   static {
-    users.add(new User("Alice", "alice@example.com"));
-    users.add(new User("Bob", "bob@example.com"));
-    users.add(new User("Charlie", "charlie@example.com"));
+    users.add(new User(1, "Dagimawi Amare", "dagim@example.com"));
+    users.add(new User(2, "Daniel Getaneh", "dan@example.com"));
+    users.add(new User(3, "Dejen Aschalew", "dej@example.com"));
+    users.add(new User(4, "Desalegn", "desie@example.com"));
+    users.add(new User(5, "Mebratu Awoke", "mebrat@example.com"));
+    users.add(new User(6, "Minuyelet Entewew", "muller@example.com"));
   }
 
   public static void main(String[] args) {
@@ -38,44 +33,27 @@ public class WebserviceWithJQueryApplication {
 
   @PostMapping("/api/users")
   public User createUser(@RequestBody User user) {
+	if(user.getId() == null){
+		 user.setId(++usersCount);  
+	}  
+	// add user to the users list
     users.add(user);
+    
     return user;
   }
 
-  @PutMapping("/api/users/{index}")
-  public User updateUser(@PathVariable int index, @RequestBody User user) {
-    users.set(index, user);
+  @PutMapping("/api/users/{id}")
+  public User updateUser(@RequestBody User user, Integer id) {
+    users.set(id, user);
+    
     return user;
   }
 
-  @DeleteMapping("/api/users/{index}")
-  public void deleteUser(@PathVariable int index) {
-    users.remove(index);
-  }
-}
-
-class User {
-  private String name;
-  private String email;
-
-  public User(String name, String email) {
-    this.name = name;
-    this.email = email;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
+  @DeleteMapping("/api/users/{id}")
+  public User deleteUser(Integer id) {
+    User deletedUser = users.get(id);
+    users.remove(id);
+    
+    return deletedUser;
   }
 }

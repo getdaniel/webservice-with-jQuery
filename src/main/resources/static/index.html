@@ -74,8 +74,8 @@
 		  // Update user
 		  $("#user-table tbody").on("click", ".update-button", function () {
 		    var currentRow = $(this).closest("tr");
-		    var name = currentRow.find("td:eq(0)").text();
-		    var email = currentRow.find("td:eq(1)").text();
+		    var name = currentRow.find("td:eq(1)").text();
+		    var email = currentRow.find("td:eq(2)").text();
 		
 		    $("#name-input").val(name);
 		    $("#email-input").val(email);
@@ -95,8 +95,8 @@
 		      data: JSON.stringify({ name: name, email: email }),
 		      contentType: "application/json",
 		      success: function (user) {
-		        $("#user-table tbody tr[data-id='" + id + "'] td:eq(0)").text(user.name);
-		        $("#user-table tbody tr[data-id='" + id + "'] td:eq(1)").text(user.email);
+		        $("#user-table tbody tr[data-id='" + id + "'] td:eq(1)").text(user.name);
+		        $("#user-table tbody tr[data-id='" + id + "'] td:eq(2)").text(user.email);
 		        $("#name-input").val("");
 		        $("#email-input").val("");
 		        $("#update-button").hide();
@@ -106,7 +106,7 @@
 		    });
 		  });
 		  
-		  // Delete Users
+		  // Cancel Updating the user
 		  $("#cancel-button").click(function () {
 		    $("#name-input").val("");
 		    $("#email-input").val("");
@@ -115,6 +115,7 @@
 		    $("#add-button").show();
 		  });
 		
+		  // Delete user
 		  $("#user-table tbody").on("click", ".delete-button", function () {
 		    var currentRow = $(this).closest("tr");
 		    var id = currentRow.attr("data-id");

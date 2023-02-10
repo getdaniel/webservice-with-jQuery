@@ -76,23 +76,25 @@
 		    var currentRow = $(this).closest("tr");
 		    var name = currentRow.find("td:eq(1)").text();
 		    var email = currentRow.find("td:eq(2)").text();
+		    var id = currentRow.data("id");
 		
 		    $("#name-input").val(name);
 		    $("#email-input").val(email);
 		    $("#add-button").hide();
 		    $("#update-button").show();
 		    $("#cancel-button").show();
+		    $("#update-button").attr("data-id", id);
 		  });
 		
 		  $("#update-button").click(function () {
 		    var name = $("#name-input").val();
 		    var email = $("#email-input").val();
-		    var id = $("#update-button").attr("data-id");
+		    var idx = $("#update-button").attr("data-id");
 		
 		    $.ajax({
 		      type: "PUT",
-		      url: "/api/users/" + id,
-		      data: JSON.stringify({ name: name, email: email }),
+		      url: "/api/users/" + idx,
+		      data: JSON.stringify({name: name, email: email }),
 		      contentType: "application/json",
 		      success: function (user) {
 		        $("#user-table tbody tr[data-id='" + id + "'] td:eq(1)").text(user.name);

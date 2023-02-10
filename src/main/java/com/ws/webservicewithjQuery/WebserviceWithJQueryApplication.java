@@ -43,10 +43,18 @@ public class WebserviceWithJQueryApplication {
     return user;
   }
 
-  @PutMapping("/api/users/{id}")
+@SuppressWarnings("null")
+@PutMapping("/api/users/{id}")
   public User updateUser(@RequestBody User user, Integer id) {
-    users.set(id, user);
-    
+	  Integer idValue = null;
+	  if (id != null) {
+		   idValue = id.intValue();
+		   // Use idValue here
+		} else {
+		   // Handle the null case
+		   users.set(idValue, user);
+		}
+	  
     return user;
   }
 

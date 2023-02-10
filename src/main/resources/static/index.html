@@ -16,6 +16,7 @@
   <table id="user-table" border="1">
     <thead>
       <tr>
+		<th>ID</th>
         <th>Name</th>
         <th>Email</th>
         <th colspan="2">Actions</th>
@@ -39,7 +40,7 @@
 		    success: function (users) {
 		      $.each(users, function (index, user) {
 		        $("#user-table tbody").append(
-		          "<tr><td>" + user.name + "</td><td>" + user.email +
+		          "<tr><td>" + user.id + "</td><td>" + user.name + "</td><td>" + user.email +
 		          "</td><td><button type='button' class='update-button' data-id='" + user.id + "'>Update</button></td>" +
 		          "<td><button type='button' class='delete-button' data-id='" + user.id + "'>Delete</button></td></tr>"
 		        );
@@ -60,7 +61,7 @@
 			    data: JSON.stringify(user),
 			    success: function (createdUser) {
 			      $("#user-table tbody").append(
-			        "<tr><td>" + createdUser.name + "</td><td>" + createdUser.email +
+			        "<tr><td>" + createdUser.id + "</td><td>" + createdUser.name + "</td><td>" + createdUser.email +
 			        "</td><td><button type='button' class='update-button' data-id='" + createdUser.id + "'>Update</button></td>" +
 			        "<td><button type='button' class='delete-button' data-id='" + createdUser.id + "'>Delete</button></td></tr>"
 			      );

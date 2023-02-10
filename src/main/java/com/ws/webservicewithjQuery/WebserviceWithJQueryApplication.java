@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @SpringBootApplication
@@ -51,9 +52,17 @@ public class WebserviceWithJQueryApplication {
 
   @DeleteMapping("/api/users/{id}")
   public User deleteUser(Integer id) {
-    User deletedUser = users.get(id);
-    users.remove(id);
-    
-    return deletedUser;
+	 Iterator<User> iterator = users.iterator();
+	 while(iterator.hasNext()){
+		 User user = iterator.next();
+		 
+		 if(user.getId() == id){
+			 iterator.remove();
+			 
+			//returns the deleted resource back
+			 return user;
+		 }  
+	  }  
+	  return null; 
   }
 }

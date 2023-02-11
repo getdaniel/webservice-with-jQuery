@@ -29,7 +29,7 @@ Enjoy and start browsing through this web service example.
   <img src="https://github.com/getdaniel/webservice-with-jQuery/blob/main/assets/html-design.png" alt="The design of html page">
 </p>
 
-- Click [Here](https://github.com/getdaniel/webservice-with-jQuery/blob/main/docs/index.html) to see the overal documentation of the project
+- Click [Here](https://getdaniel.github.io/webservice-with-jQuery/) to see the overal documentation of the project
 
 - ```src/main/java/com/ws/webservicewithjQuery/*.java``` is the file that the java part of the code is written.
 - ```src/main/resources/static/*``` is the the folder that holds the markup files like ```html``` and ```js``` files.

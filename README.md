@@ -36,7 +36,7 @@ Enjoy and start browsing through this web service example.
 - [Dejen Aschalew](https://github.com/)
 - [Desalegn Getachew](https://github.com/)
 - [Mebratu Awoke](https://github.com/)
-- [Minuyelet Entewew](https://github.com/)
+- [Minuyelet Entewew](https://github.com/Minuyelet)
 
 ## License:
 You can use this project and modify as you wanted. You can see the [LICENSE]().

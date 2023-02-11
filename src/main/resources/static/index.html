@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title> Spring RESTfull </title>
+  <link type="icon" href="icon.xpm">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
 	  body {
@@ -32,105 +34,6 @@
 	  <button type="button" id="update-button" style="display:none">Update</button>
 	  <button type="button" id="cancel-button" style="display:none">Cancel</button>
   </form>
-  <script>
-	  $(document).ready(function () {
-		  $.ajax({
-		    type: "GET",
-		    url: "/api/users",
-		    success: function (users) {
-		      $.each(users, function (index, user) {
-		        $("#user-table tbody").append(
-		          "<tr><td>" + user.id + "</td><td>" + user.name + "</td><td>" + user.email +
-		          "</td><td><button type='button' class='update-button' data-id='" + user.id + "'>Update</button></td>" +
-		          "<td><button type='button' class='delete-button' data-id='" + user.id + "'>Delete</button></td></tr>"
-		        );
-		      });
-		    }
-		  });
-		
-		  // Create user
-		  $("#add-button").click(function () {
-			  var name = $("#name-input").val();
-			  var email = $("#email-input").val();
-			  var user = { name: name, email: email };
-			  
-			  $.ajax({
-			    type: "POST",
-			    url: "/api/users",
-			    contentType: "application/json",
-			    data: JSON.stringify(user),
-			    success: function (createdUser) {
-			      $("#user-table tbody").append(
-			        "<tr><td>" + createdUser.id + "</td><td>" + createdUser.name + "</td><td>" + createdUser.email +
-			        "</td><td><button type='button' class='update-button' data-id='" + createdUser.id + "'>Update</button></td>" +
-			        "<td><button type='button' class='delete-button' data-id='" + createdUser.id + "'>Delete</button></td></tr>"
-			      );
-			      $("#name-input").val("");
-			      $("#email-input").val("");
-			    }
-			  });
-			});
-		  
-		  // Update user
-		  $("#user-table tbody").on("click", ".update-button", function () {
-		    var currentRow = $(this).closest("tr");
-		    var name = currentRow.find("td:eq(1)").text();
-		    var email = currentRow.find("td:eq(2)").text();
-		    var id = currentRow.data("id");
-		
-		    $("#name-input").val(name);
-		    $("#email-input").val(email);
-		    $("#add-button").hide();
-		    $("#update-button").show();
-		    $("#cancel-button").show();
-		    $("#update-button").attr("data-id", id);
-		  });
-		
-		  $("#update-button").click(function () {
-		    var name = $("#name-input").val();
-		    var email = $("#email-input").val();
-		    var idx = $("#update-button").attr("data-id");
-		
-		    $.ajax({
-		      type: "PUT",
-		      url: "/api/users/" + idx,
-		      data: JSON.stringify({name: name, email: email }),
-		      contentType: "application/json",
-		      success: function (user) {
-		        $("#user-table tbody tr[data-id='" + id + "'] td:eq(1)").text(user.name);
-		        $("#user-table tbody tr[data-id='" + id + "'] td:eq(2)").text(user.email);
-		        $("#name-input").val("");
-		        $("#email-input").val("");
-		        $("#update-button").hide();
-		        $("#cancel-button").hide();
-		        $("#add-button").show();
-		      }
-		    });
-		  });
-		  
-		  // Cancel Updating the user
-		  $("#cancel-button").click(function () {
-		    $("#name-input").val("");
-		    $("#email-input").val("");
-		    $("#update-button").hide();
-		    $("#cancel-button").hide();
-		    $("#add-button").show();
-		  });
-		
-		  // Delete user
-		  $("#user-table tbody").on("click", ".delete-button", function () {
-		    var currentRow = $(this).closest("tr");
-		    var id = currentRow.attr("data-id");
-		
-		    $.ajax({
-		      type: "DELETE",
-		      url: "/api/users/" + id,
-		      success: function () {
-		        currentRow.remove();
-		      }
-		    });
-		  });
-		});
-  </script>
+  <script type="text/javascript" src="index.js"></script>
 </body>
 </html>

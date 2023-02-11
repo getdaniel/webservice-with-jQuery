@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @SpringBootApplication
@@ -43,34 +42,34 @@ public class WebserviceWithJQueryApplication {
     return user;
   }
 
-@SuppressWarnings("null")
-@PutMapping("/api/users/{id}")
-  public User updateUser(@RequestBody User user, Integer id) {
-	  Integer idValue = null;
-	  if (id != null) {
-		   idValue = id.intValue();
-		   // Use idValue here
-		} else {
-		   // Handle the null case
-		   users.set(idValue, user);
-		}
+  @PutMapping("/api/users/{id}")
+  public User updateUser(@RequestBody User user, @PathVariable int id) {
+	  	  
+	  User existingUser = findById(id);
 	  
-    return user;
+	  if (existingUser != null) {
+	      existingUser.setName(user.getName());
+	      existingUser.setEmail(user.getEmail());
+	      
+	      return existingUser;
+	      
+	  } else {
+	      return null;
+	  }
   }
 
   @DeleteMapping("/api/users/{id}")
-  public User deleteUser(Integer id) {
-	 Iterator<User> iterator = users.iterator();
-	 while(iterator.hasNext()){
-		 User user = iterator.next();
-		 
-		 if(user.getId() == id){
-			 iterator.remove();
-			 
-			//returns the deleted resource back
-			 return user;
-		 }  
-	  }  
-	  return null; 
+  public void deleteUser(@PathVariable int id) {
+	  
+	    users.remove(findById(id));
   }
+  
+  //method that find a particular user from the list 
+  public User findById(Integer id) {
+	  for(User user:users) {
+		  if(user.getId() == id)
+			  return user;
+	  }
+	  return null;
+  }  
 }

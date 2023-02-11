@@ -30,7 +30,18 @@ public class WebserviceWithJQueryApplication {
   public List<User> getUsers() {
     return users;
   }
-
+  
+  @GetMapping("/api/users/{id}")
+  public User retriveUser(@PathVariable int id) {
+	  User user = findById(id);
+	  
+	  if (user == null) {
+		  System.out.println("Id: " + id + " not found!");
+	  }
+	  
+	  return user;
+  }
+  
   @PostMapping("/api/users")
   public User createUser(@RequestBody User user) {
 	if(user.getId() == null){

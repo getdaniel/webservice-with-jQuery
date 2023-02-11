@@ -25,6 +25,9 @@ After successfully build with ```Step 3``` action, open your favorite browser an
 Enjoy and start browsing through this web service example.
 
 ## Overall View of the Project:computer::
+<p align="center">
+  <img src="https://github.com/getdaniel/webservice-with-jQuery/blob/main/assets/html-design.png" alt="The design of html page">
+</p>
 - ```src/main/java/com/ws/webservicewithjQuery/WebserviceWithJQueryApplication.java``` is the file that the java part of the code is written.
 - ```src/main/resources/static/*``` is the the folder that holds the markup files like ```html``` and ```js``` files.
 - ```src/test/java/com/ws/webservicewithjQuery/WebserviceWithJQueryApplicationTests.java``` is a file that is used to test the java code functionality.

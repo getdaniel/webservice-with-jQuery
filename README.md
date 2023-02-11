@@ -28,7 +28,10 @@ Enjoy and start browsing through this web service example.
 <p align="center">
   <img src="https://github.com/getdaniel/webservice-with-jQuery/blob/main/assets/html-design.png" alt="The design of html page">
 </p>
-- ```src/main/java/com/ws/webservicewithjQuery/WebserviceWithJQueryApplication.java``` is the file that the java part of the code is written.
+
+- Click [Here](https://github.com/getdaniel/webservice-with-jQuery/blob/main/doc/index.html) to see the overal documentation of the project
+
+- ```src/main/java/com/ws/webservicewithjQuery/*.java``` is the file that the java part of the code is written.
 - ```src/main/resources/static/*``` is the the folder that holds the markup files like ```html``` and ```js``` files.
 - ```src/test/java/com/ws/webservicewithjQuery/WebserviceWithJQueryApplicationTests.java``` is a file that is used to test the java code functionality.
 - The gradle part inicates the project is done by gradle-groovy not marvel.

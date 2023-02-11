@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,30 +46,38 @@ public class WebserviceWithJQueryApplication {
   }
   
   @PostMapping("/api/users")
-  public User createUser(@RequestBody User user) {
-	if(user.getId() == null){
-		 user.setId(++usersCount);  
-	}  
-	// add user to the users list
-    users.add(user);
+  public ResponseEntity<User> createUser(@RequestBody User user) {
+    if (user.getName() == null || user.getName().trim().length() == 0 ||
+        user.getEmail() == null || user.getEmail().trim().length() == 0) {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    if (user.getId() == null) {
+      user.setId(++usersCount);  
+    }
     
-    return user;
+    users.add(user);
+  		
+    return new ResponseEntity<>(user, HttpStatus.CREATED);
   }
 
   @PutMapping("/api/users/{id}")
-  public User updateUser(@RequestBody User user, @PathVariable int id) {
-	  	  
-	  User existingUser = findById(id);
-	  
-	  if (existingUser != null) {
-	      existingUser.setName(user.getName());
-	      existingUser.setEmail(user.getEmail());
-	      
-	      return existingUser;
-	      
-	  } else {
-	      return null;
-	  }
+  public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable int id) {
+
+    User existingUser = findById(id);
+
+    if (existingUser != null) {
+        if(user.getName().isEmpty() || user.getEmail().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        existingUser.setName(user.getName());
+        existingUser.setEmail(user.getEmail());
+
+        return new ResponseEntity<>(existingUser, HttpStatus.OK);
+
+    } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
   }
 
   @DeleteMapping("/api/users/{id}")

@@ -44,11 +44,11 @@ Open postman and go to the request page and follow the ```CRUD``` form to reques
   <img src="https://github.com/getdaniel/webservice-with-jQuery/blob/main/assets/html-design.png" alt="The design of html page">
 </p>
 
-- Click [Here](https://getdaniel.github.io/webservice-with-jQuery/)(```Right click and press new tab, to open on new tab.```) to see the overal documentation of the project
+- Click [Here](https://getdaniel.github.io/webservice-with-jQuery/)(```Right click and press new tab, to open on new tab -> To keep the current tab.```) to see the overal documentation of the project
 
 - ```src/main/java/com/ws/webservicewithjQuery/*.java``` is the file that the java part of the code is written.
 - ```src/main/resources/static/*``` is the the folder that holds the markup files like ```html``` and ```js``` files.
-- ```src/test/java/com/ws/webservicewithjQuery/WebserviceWithJQueryApplicationTests.java``` is a file that is used to test the java code functionality.
+- ```src/test/java/com/ws/webservicewithjQuery/WebserviceWithJQueryApplicationTests.java``` is a file that is used to test the java code functionality. Unfortunately, there is not test case coded. Sorry for that :sorry::sorry::sorry:
 - The gradle part inicates the project is done by gradle-groovy not marvel.
 
 ## Developers :technologist::
@@ -60,4 +60,4 @@ Open postman and go to the request page and follow the ```CRUD``` form to reques
 - [Minuyelet Entewew](https://github.com/Minuyelet)
 
 ## License:
-You can use this project and modify as you wanted. You can see the [LICENSE]().
+You can use this project and modify as you wanted. You can see the [LICENSE](https://github.com/getdaniel/webservice-with-jQuery/blob/main/LICENSE).

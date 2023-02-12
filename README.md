@@ -22,7 +22,22 @@ Run the Project as ```Run As``` > ```Spring Boot App```
 After successfully build with ```Step 3``` action, open your favorite browser and search ```http://localhost:8080/``` and press ```Enter```
 
 ### Step :five::
-Enjoy and start browsing through this web service example.
+After this, you can use postman or the web browser to see the result. To use the web browser see ```Step 4```. To use the postman see below steps.
+<p align="center">
+  <img src="https://github.com/getdaniel/webservice-with-jQuery/blob/main/assets/postman.png" alt="Postman icon">
+</p>
+
+#### Step :one::
+Run the Project as ```Run As``` > ```Spring Boot App```
+
+### Step :two::
+Open postman and go to the request page and follow the ```CRUD``` form to request the the server.
+
+- To Create a user -> ```POST http://localhost:8080/api/user```
+- To Read a user -> ```GET http://localhost:8080/api/user/{id-number}```
+- To Read all user -> ```GET http://localhost:8080/api/user```
+- To Update a user -> ```PUT http://localhost:8080/api/user/{id-number}```
+- To Delete a user -> ```DELETE http://localhost:8080/api/user{id-number}```
 
 ## Overall View of the Project:computer::
 <p align="center">

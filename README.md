@@ -48,7 +48,7 @@ Open postman and go to the request page and follow the ```CRUD``` form to reques
 
 - ```src/main/java/com/ws/webservicewithjQuery/*.java``` is the file that the java part of the code is written.
 - ```src/main/resources/static/*``` is the the folder that holds the markup files like ```html``` and ```js``` files.
-- ```src/test/java/com/ws/webservicewithjQuery/WebserviceWithJQueryApplicationTests.java``` is a file that is used to test the java code functionality. Unfortunately, there is not test case coded. Sorry for that :sorry::sorry::sorry:
+- ```src/test/java/com/ws/webservicewithjQuery/WebserviceWithJQueryApplicationTests.java``` is a file that is used to test the java code functionality. Unfortunately, there is not test case coded. Sorry for that :pleading_face::pleading_face::pleading_face:
 - The gradle part inicates the project is done by gradle-groovy not marvel.
 
 ## Developers :technologist::

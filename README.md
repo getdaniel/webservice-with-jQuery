@@ -44,7 +44,7 @@ Open postman and go to the request page and follow the ```CRUD``` form to reques
   <img src="https://github.com/getdaniel/webservice-with-jQuery/blob/main/assets/html-design.png" alt="The design of html page">
 </p>
 
-- Click [Here](https://getdaniel.github.io/webservice-with-jQuery/) to see the overal documentation of the project
+- Click <a href="https://getdaniel.github.io/webservice-with-jQuery/" target="_blank">Here</a> to see the overal documentation of the project
 
 - ```src/main/java/com/ws/webservicewithjQuery/*.java``` is the file that the java part of the code is written.
 - ```src/main/resources/static/*``` is the the folder that holds the markup files like ```html``` and ```js``` files.

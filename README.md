@@ -34,10 +34,10 @@ Run the Project as ```Run As``` > ```Spring Boot App```
 Open postman and go to the request page and follow the ```CRUD``` form to request the the server.
 
 - To Create a user -> ```POST http://localhost:8080/api/user```
-- To Read a user -> ```GET http://localhost:8080/api/user/{id-number}```
+- To Read a user -> ```GET http://localhost:8080/api/user/{id}```
 - To Read all user -> ```GET http://localhost:8080/api/user```
-- To Update a user -> ```PUT http://localhost:8080/api/user/{id-number}```
-- To Delete a user -> ```DELETE http://localhost:8080/api/user{id-number}```
+- To Update a user -> ```PUT http://localhost:8080/api/user/{id}```
+- To Delete a user -> ```DELETE http://localhost:8080/api/user{id}```
 
 ## Overall View of the Project:computer::
 <p align="center">

@@ -55,7 +55,7 @@ Open postman and go to the request page and follow the ```CRUD``` form to reques
 - [Dagimawi Amare](https://github.com/)
 - [Daniel Getaneh](https://github.com/getdaniel)
 - [Dejen Aschalew](https://github.com/)
-- [Desalegn Getachew](https://github.com/)
+- [Desalegn Getachew](https://github.com/Desalegngetachew)
 - [Mebratu Awoke](https://github.com/)
 - [Minuyelet Entewew](https://github.com/Minuyelet)
 
